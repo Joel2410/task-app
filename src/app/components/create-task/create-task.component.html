@@ -1,0 +1,15 @@
+<div>
+    <h2>Create task</h2>
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+
+        <label for="title">Title: </label>
+        <input id="title" type="text" formControlName="title">
+      
+        <label for="description">Description: </label>
+        <input id="description" type="text" formControlName="description">
+
+        <p [hidden]="taskForm.valid">Complete the form to enable button.</p>
+        <button type="submit" [disabled]="!taskForm.valid">Create</button>
+      
+      </form>
+</div>
