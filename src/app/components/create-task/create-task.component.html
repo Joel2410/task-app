@@ -1,15 +1,27 @@
 <div>
-    <h2>Create task</h2>
-    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <h2>{{title}}</h2>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <br>
+    <div class="p-fluid grid">
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input type="text" id="title" formControlName="title" pInputText>
+          <label for="title">Title</label>
+        </span>
+      </div>
+      <br>
+      <br>
+      <div class="field col-12 md:col-4">
+        <span class="p-float-label">
+          <input type="text" id="description" formControlName="description" pInputText>
+          <label for="description">Description</label>
+        </span>
+      </div>
+    </div>
+    
+    <br>
+    <button pButton type="submit" [disabled]="!taskForm.valid">{{ task.id ? 'Update' : 'Create'}}</button>
+    <button pButton type="button" label="Cancel" class="p-button-danger" (click)="cancel()"></button>
 
-        <label for="title">Title: </label>
-        <input id="title" type="text" formControlName="title">
-      
-        <label for="description">Description: </label>
-        <input id="description" type="text" formControlName="description">
-
-        <p [hidden]="taskForm.valid">Complete the form to enable button.</p>
-        <button type="submit" [disabled]="!taskForm.valid">Create</button>
-      
-      </form>
+  </form>
 </div>
