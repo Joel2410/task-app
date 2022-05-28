@@ -9,14 +9,14 @@ import { v4 as uuidv4 } from 'uuid';
 export class TasksService {
 
   tasks: Task[] = [];
-  editingTask: Task = {};
+  editingTask: Task = { };
 
   constructor() { }
 
   createTask(task: Task): void {
     task.id = uuidv4();
     task.status = StatusTask.TODO;
-    task.createAt = new Date();
+    task.createdAt = new Date();
     this.tasks.push(task);
     this.saveTasks();
   }

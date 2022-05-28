@@ -5,7 +5,7 @@ export interface Task {
     title?: string;
     description?: string;
     status?: StatusTask;
-    createAt?: Date;
+    createdAt?: Date;
     collapsed?: boolean;
 }
 

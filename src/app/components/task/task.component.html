@@ -1,7 +1,7 @@
 <div class="container" pDraggable="task" (onDragStart)="dragStart($event)" (onDragEnd)="dragEnd($event)">
     <p-fieldset legend="{{task.title}}" [toggleable]="true" [collapsed]="task.collapsed || false"
         (collapsedChange)="collapsed($event)">
-        <span>{{task.createAt | date: 'short'}}</span>
+        <span>{{task.createdAt | date: 'short'}}</span>
         <p>{{task.description}}</p>
 
         <div class="container-fluid">
