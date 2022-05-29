@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateTaskComponent } from './components/create-task/create-task.component';
-import { TasksComponent } from './components/tasks/tasks.component';
+
 
 const routes: Routes = [
-  { path: 'tasks', component: TasksComponent },
-  { path: 'create-task', component: CreateTaskComponent },
-  { path: '', component: TasksComponent }
+  { path: '', redirectTo: 'tasks', pathMatch: 'full' },
+  {
+    path: 'tasks',
+    loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule)
+  },
+  { path: '**', redirectTo: 'tasks', pathMatch: 'full' },
 ];
 
 @NgModule({

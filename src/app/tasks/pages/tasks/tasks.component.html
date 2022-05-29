@@ -1,0 +1,19 @@
+<div class="m-2 md:m-4 lg:m-6">
+    <div class="absolute top-0 left-0 px-4 py-3 w-full font-bold">
+        <div class="static grid justify-content-between w-11">
+            <h1 class="ml-6">Tasks</h1>
+            <button pButton type="button" label="New task" class="p-button-success p-2 m-2" icon="pi pi-plus-circle"
+                [routerLink]="['/tasks/create']"></button>
+        </div>
+    </div>
+    
+    <div class="container flex justify-content-left">
+        <div *ngFor="let droppable of droppables" class="col-12 md:col-6 lg:col-4">
+            <app-tasks-list [title]="droppable" [tasks]="getTasks(droppable)"> </app-tasks-list>
+        </div>
+    </div>
+
+    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+    </p-confirmDialog>
+    <p-toast></p-toast>
+</div>

@@ -1,7 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { TasksService } from 'src/app/services/tasks.service';
+import { TasksService } from '../../services/tasks.service';
 import { Task } from '../../interfaces/task';
 
 @Component({
@@ -9,21 +8,14 @@ import { Task } from '../../interfaces/task';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss']
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent {
 
-  @Input() task: Task = {};
+  @Input() task: Task = { };
 
   constructor(private tasksService: TasksService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService,
-    private router: Router) { }
-
-  ngOnInit(): void { }
-
-  editTask(): void {
-    this.tasksService.editingTask = this.task;
-    this.router.navigate(['create-task']);
-  }
+    private messageService: MessageService
+  ) { }
 
   deleteTask(): void {
     this.confirmationService.confirm({
@@ -32,13 +24,13 @@ export class TaskComponent implements OnInit {
       icon: 'pi pi-info-circle',
       accept: () => {
         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Deleted successfully' });
-        this.tasksService.deleteTask(this.task);
+        this.tasksService.deleteTask(this.task.id || '');
       }
     });
   }
 
   dragStart(event: DragEvent): void {
-    event.dataTransfer?.setData('task', JSON.stringify(this.task));
+    event.dataTransfer?.setData('draggedTaskId', this.task.id || '');
   }
 
   dragEnd(event: DragEvent): void {
@@ -46,6 +38,6 @@ export class TaskComponent implements OnInit {
   }
 
   collapsed(collapsed: boolean): void {
-    this.tasksService.updateCollapsedTask(this.task, collapsed);
+    this.tasksService.updateCollapsedTask(this.task.id || '', collapsed);
   }
 }

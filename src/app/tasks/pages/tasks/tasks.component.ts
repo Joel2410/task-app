@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
 import { Task } from '../../interfaces/task';
 import { StatusTask } from 'src/app/commons/enums/status-task.enum';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasks',
@@ -10,21 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./tasks.component.scss']
 })
 export class TasksComponent implements OnInit {
+  
+  droppables = [StatusTask.TODO, StatusTask.DOING, StatusTask.DONE];
 
-  get tasks(): Task[] {
-    return this.tasksService.tasks;
+  constructor(private tasksService: TasksService) { }
+
+  ngOnInit(): void {
+    this.tasksService.loadTasks();
   }
-
-  constructor(private tasksService: TasksService, private router: Router) { }
-
-  ngOnInit(): void { }
 
   getTasks(status: StatusTask | string): Task[] {
-    return status ? this.tasks.filter(task => task.status == status) : this.tasks;
+    return status ? this.tasksService.getTaskByStatus(status as StatusTask) : this.tasksService.getTasks();
   }
-
-  createTask(): void {
-    this.router.navigate(['create-task']);
-  }
-
 }

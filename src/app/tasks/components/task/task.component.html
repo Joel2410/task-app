@@ -1,0 +1,13 @@
+<div class="pb-6" pDraggable="task" (onDragStart)="dragStart($event)" (onDragEnd)="dragEnd($event)">
+    <p-fieldset legend="{{task.title}}" [toggleable]="true" [collapsed]="task.collapsed || false"
+        (collapsedChange)="collapsed($event)">
+        <span>{{task.createdAt | date: 'short'}}</span>
+        <p>{{task.description}}</p>
+
+        <div class="flex justify-content-between">
+            <button pButton type="button" label="Edit" icon="pi pi-user-edit" [routerLink]="['edit', task.id]"></button>
+            <button pButton type="button" label="Delete" class="p-button-danger" icon="pi pi-trash"
+                (click)="deleteTask()"></button>
+        </div>
+    </p-fieldset>
+</div>
