@@ -7,16 +7,17 @@
     </div>
 
     <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-      <div class="field mt-3">
+      <div class="field mt-3 text-xs">
         <span class="p-float-label">
           <input type="text" id="title" class="w-full" formControlName="title" pInputText>
           <label for="title">Title</label>
         </span>
       </div>
-      <div class="field mt-5">
+
+      <div class="field mt-5 text-xs">
         <span class="p-float-label">
-          <input type="text" id="description" class="w-full" formControlName="description" pInputText
-            autocomplete="off">
+          <textarea id="description" class="container w-full" formControlName="description" pInputTextarea
+            autocomplete="off"></textarea>
           <label for="description">Description</label>
         </span>
       </div>

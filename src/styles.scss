@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    margin: 0px;
+}
+.p-fieldset-legend > a {
+    padding: 10px !important;
+    display: block !important;
+    width: 230px;
+    
+}
+
+.p-fieldset .p-fieldset-content {
+    padding: 0.4rem !important;
+}
+
+.p-fieldset.p-component.p-fieldset-toggleable {
+    border: 0px;
+}

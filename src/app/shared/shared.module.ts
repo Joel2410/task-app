@@ -6,6 +6,7 @@ import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
 import { DragDropModule } from 'primeng/dragdrop';
 import { FieldsetModule } from 'primeng/fieldset';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
@@ -18,7 +19,8 @@ const modulesToExport = [
     ToastModule,
     InputTextModule,
     DragDropModule,
-    FieldsetModule
+    FieldsetModule,
+    InputTextareaModule
 ];
 
 @NgModule({

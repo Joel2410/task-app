@@ -1,13 +1,15 @@
-<div class="pb-6" pDraggable="task" (onDragStart)="dragStart($event)" (onDragEnd)="dragEnd($event)">
-    <p-fieldset legend="{{task.title}}" [toggleable]="true" [collapsed]="task.collapsed || false"
+<div class="container mb-6" pDraggable="task" (onDragStart)="dragStart($event)" (onDragEnd)="dragEnd($event)">
+    <p-fieldset styleClass="m-0 py-0 text-base" legend="{{task.title}}" [toggleable]="true" [collapsed]="task.collapsed || false"
         (collapsedChange)="collapsed($event)">
-        <span>{{task.createdAt | date: 'short'}}</span>
-        <p>{{task.description}}</p>
-
-        <div class="flex justify-content-between">
-            <button pButton type="button" label="Edit" icon="pi pi-user-edit" [routerLink]="['edit', task.id]"></button>
-            <button pButton type="button" label="Delete" class="p-button-danger" icon="pi pi-trash"
-                (click)="deleteTask()"></button>
+        <div class="">
+            <span class="font-italic">{{task.createdAt | date: 'short'}}</span>
+            <p class="pb-2">{{task.description}}</p>
+    
+            <div class="flex justify-content-between mb-2 mx-0 p-0">
+                <button pButton type="button" label="Edit" class="m-0 py-2 px-3 text-sm" icon="pi pi-user-edit" [routerLink]="['edit', task.id]"></button>
+                <button pButton type="button" label="Delete" class="p-button-danger m-0 py-2 px-3 text-sm" icon="pi pi-trash"
+                    (click)="deleteTask()"></button>
+            </div>
         </div>
     </p-fieldset>
 </div>
