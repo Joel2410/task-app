@@ -13,4 +13,15 @@ describe('TasksService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should have getTasks', () => {
+    expect(service.getTasks).toBeTruthy();
+  });
+
+  it('should be created a task', () => {
+    service.createTask({ title: 'Tarea 1', description: 'Hacer pruebas unitarias con Jasmine' });
+    expect(service.getTasks().length).toEqual(1);
+  });
+
+
 });
