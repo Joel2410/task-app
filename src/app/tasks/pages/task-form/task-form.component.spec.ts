@@ -28,7 +28,17 @@ describe('TaskFormComponent', () => {
   });
 
   it('task form should be invalid', () => {
-    expect(component.taskForm.invalid).toBe(true);
+    expect(component.taskForm.invalid).toBeTrue();
+  });
+
+  it('task form should be valid', () => {
+    const controlTitle = component.taskForm.controls['title'];
+    const controldescription = component.taskForm.controls['description'];
+
+    controlTitle.setValue('Tarea de prueba');
+    controldescription.setValue('Esto es un ejemplo');
+
+    expect(component.taskForm.valid).toBeTrue();
   });
   
 });

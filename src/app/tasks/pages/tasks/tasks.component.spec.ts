@@ -22,4 +22,12 @@ describe('TasksComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should create droppables columns', () => {
+    expect(component.droppables.length).toEqual(3);
+  });
+
+  it('should have getTasks method', () => {
+    expect(component.getTasks).toBeTruthy();
+  });
 });
