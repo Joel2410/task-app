@@ -1,9 +1,9 @@
-<div class="container mb-6" pDraggable="task" (onDragStart)="dragStart($event)" (onDragEnd)="dragEnd($event)">
+<div class="container mt-4" pDraggable="task" (onDragStart)="dragStart($event)" (onDragEnd)="dragEnd($event)">
     <p-fieldset styleClass="m-0 py-0 text-base" legend="{{task.title}}" [toggleable]="true" [collapsed]="task.collapsed || false"
         (collapsedChange)="collapsed($event)">
-        <div class="">
+        <div class="div-content">
             <span class="font-italic">{{task.createdAt | date: 'short'}}</span>
-            <p class="pb-2">{{task.description}}</p>
+            <p class="mb-4">{{task.description}}</p>
     
             <div class="flex justify-content-between mb-2 mx-0 p-0">
                 <button pButton type="button" label="Edit" class="m-0 py-2 px-3 text-sm" icon="pi pi-user-edit" [routerLink]="['edit', task.id]"></button>

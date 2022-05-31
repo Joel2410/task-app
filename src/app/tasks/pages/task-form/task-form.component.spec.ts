@@ -26,4 +26,9 @@ describe('TaskFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('task form should be invalid', () => {
+    expect(component.taskForm.invalid).toBe(true);
+  });
+  
 });
