@@ -47,21 +47,12 @@ export class TasksService {
   private updateTaskBehind(changes: Task) {
     const task = this.getTaskById(changes.id || '');
     if (task) {
-      if (changes.title) {
-        task.title = changes.title;
-      }
 
-      if (changes.description) {
-        task.description = changes.description;
-      }
-
-      if (changes.status) {
-        task.status = changes.status;
-      }
-
-      if (changes.collapsed != undefined) {
-        task.collapsed = changes.collapsed;
-      }
+      task.title = changes.title ?? task.title;
+      task.description = changes.description ?? task.description;
+      task.status = changes.status ?? task.status;
+      task.collapsed = changes.collapsed ?? task.collapsed;
+      task.title = changes.title ?? task.title;
 
       this.saveTasks();
     }
