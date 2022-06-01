@@ -11,10 +11,9 @@ describe('TaskFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [TaskFormComponent],
-      imports: [ AppRoutingModule ],
-      providers: [ FormBuilder ]
-    })
-      .compileComponents();
+      imports: [AppRoutingModule],
+      providers: [FormBuilder],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -40,5 +39,4 @@ describe('TaskFormComponent', () => {
 
     expect(component.taskForm.valid).toBeTrue();
   });
-  
 });

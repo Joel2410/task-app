@@ -1,31 +1,30 @@
 import { Injectable } from '@angular/core';
-import { StatusTask } from '../../commons';
+import { StatusTask } from '@enums/status-task.enum';
 import { Task } from '../interfaces/task';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TasksService {
-
-  private ITEM_NAME: string = 'tasks';
+  private ITEM_NAME = 'tasks';
   private tasks: Task[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  getTasks(): Task[] {
+  public getTasks(): Task[] {
     return this.tasks;
   }
 
-  getTaskById(id: string): Task | undefined {
-    return this.tasks.find(task => task.id == id);
+  public getTaskById(id: string): Task | undefined {
+    return this.tasks.find((task) => task.id == id);
   }
 
-  getTaskByStatus(status: StatusTask): Task[] {
-    return this.tasks.filter(task => task.status == status);
+  public getTaskByStatus(status: StatusTask): Task[] {
+    return this.tasks.filter((task) => task.status == status);
   }
 
-  createTask(task: Task): void {
+  public createTask(task: Task): void {
     task.id = uuidv4();
     task.status = StatusTask.TODO;
     task.createdAt = new Date();
@@ -33,45 +32,62 @@ export class TasksService {
     this.saveTasks();
   }
 
-  updateTask(id: string, title: string, description: string): void {
-    const task = this.getTaskById(id);
+  public updateTask(id: string, title: string, description: string): void {
+    this.updateTaskBehind({ id, title, description });
+  }
+
+  public updateStatusTask(id: string, status: StatusTask): void {
+    this.updateTaskBehind({ id, status });
+  }
+
+  public updateCollapsedTask(id: string, collapsed: boolean): void {
+    this.updateTaskBehind({ id, collapsed });
+  }
+
+  private updateTaskBehind(changes: Task) {
+    const task = this.getTaskById(changes.id || '');
     if (task) {
-      task.title = title;
-      task.description = description;
+      if (changes.title) {
+        task.title = changes.title;
+      }
+
+      if (changes.description) {
+        task.description = changes.description;
+      }
+
+      if (changes.status) {
+        task.status = changes.status;
+      }
+
+      if (changes.collapsed != undefined) {
+        task.collapsed = changes.collapsed;
+      }
+
       this.saveTasks();
     }
   }
 
-  deleteTask(id: string): void {
+  public deleteTask(id: string): void {
     const task = this.getTaskById(id);
     if (task) {
-      this.tasks = this.tasks.filter(t => t.id != task.id);
+      this.tasks = this.tasks.filter((t) => t.id != task.id);
       this.saveTasks();
     }
   }
 
-  updateStatusTask(id: string, status: StatusTask): void {
-    const task = this.getTaskById(id);
-    if (task) {
-      task.status = status;
-      this.saveTasks();
-    }
-  }
-
-  updateCollapsedTask(id: string, collapsed: boolean): void {
-    const task = this.getTaskById(id);
-    if (task) {
-      task.collapsed = collapsed;
-      this.saveTasks();
-    }
-  }
-
-  saveTasks(): void {
+  private saveTasks(): void {
     localStorage.setItem(this.ITEM_NAME, JSON.stringify(this.tasks));
   }
 
-  loadTasks(): void {
+  public loadTasks(): void {
     const storedTasks = localStorage.getItem(this.ITEM_NAME);
-    this.tasks = storedTasks && JSON.parse(storedTasks) || [];
+
+    if (storedTasks) {
+      try {
+        this.tasks = JSON.parse(storedTasks);
+      } catch {
+        this.tasks = [];
+      }
+    }
   }
 }

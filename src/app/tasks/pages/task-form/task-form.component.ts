@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TasksService } from '../../services/tasks.service';
-
+import { ActionForm } from '@enums/action-form.enum';
+import { TasksService } from '@tasksServices/tasks.service';
 
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
-  styleUrls: ['./task-form.component.scss']
+  styleUrls: ['./task-form.component.scss'],
 })
 export class TaskFormComponent implements OnInit {
   public taskForm: FormGroup;
-  public taskId: string = '';
+  public taskId = '';
 
-  get accionForm(): string {
-    return this.taskId ? 'Update' : 'Create'
+  get actionForm(): string {
+    return this.taskId ? ActionForm.UPDATE : ActionForm.CREATE;
   }
 
   constructor(
@@ -37,7 +37,7 @@ export class TaskFormComponent implements OnInit {
   buildForm(): FormGroup {
     return this.fb.group({
       title: ['', Validators.required],
-      description: ['', [Validators.required, Validators.minLength(4)]]
+      description: ['', [Validators.required, Validators.minLength(4)]],
     });
   }
 

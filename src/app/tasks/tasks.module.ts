@@ -9,19 +9,14 @@ import { CommonModule } from '@angular/common';
 import { TasksRoutingModule } from './tasks-routing.module';
 import { TaskFormComponent } from './pages/task-form/task-form.component';
 
-
 @NgModule({
   declarations: [
     TasksListComponent,
     TaskComponent,
     TasksComponent,
-    TaskFormComponent
+    TaskFormComponent,
   ],
-  imports: [
-    CommonModule,
-    TasksRoutingModule,
-    SharedModule
-  ],
-  providers: [TasksService, ConfirmationService, MessageService]
+  imports: [CommonModule, TasksRoutingModule, SharedModule],
+  providers: [TasksService, ConfirmationService, MessageService],
 })
-export class TasksModule { }
+export class TasksModule {}
