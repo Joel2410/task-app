@@ -1,29 +1,43 @@
 <div class="grid justify-content-center mt-6">
-  <p-card class="col lg:col-4  md:col-6 col-11">
+  <p-card class="col lg:col-4 md:col-6 col-11">
     <div class="flex justify-content-between">
-      <h2>{{accionForm}} task</h2>
-      <a class="mt-4 cursor-pointer" [routerLink]="'/tasks'"><i class="pi pi-arrow-left" style="font-size: 1.2rem">
-          Back</i> </a>
+      <h2>{{ actionForm }} task</h2>
+      <a class="mt-4 cursor-pointer" [routerLink]="'/tasks'"
+        ><i class="pi pi-arrow-left" style="font-size: 1.2rem"> Back</i>
+      </a>
     </div>
 
     <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
       <div class="field mt-3">
         <span class="p-float-label">
-          <input type="text" id="title" class="w-full" formControlName="title" pInputText>
+          <input
+            type="text"
+            id="title"
+            class="w-full"
+            formControlName="title"
+            pInputText
+          />
           <label for="title">Title</label>
         </span>
       </div>
 
       <div class="field mt-5">
         <span class="p-float-label">
-          <textarea id="description" class="container w-full" formControlName="description" pInputTextarea
-            autocomplete="off"></textarea>
+          <textarea
+            id="description"
+            class="container w-full"
+            formControlName="description"
+            pInputTextarea
+            autocomplete="off"
+          ></textarea>
           <label for="description">Description</label>
         </span>
       </div>
 
       <div class="flex justify-content-between">
-        <button pButton type="submit" [disabled]="!taskForm.valid">{{ accionForm }}</button>
+        <button pButton type="submit" [disabled]="!taskForm.valid">
+          {{ actionForm }}
+        </button>
       </div>
     </form>
   </p-card>

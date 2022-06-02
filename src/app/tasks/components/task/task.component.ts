@@ -1,21 +1,21 @@
 import { Component, Input } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { TasksService } from '../../services/tasks.service';
-import { Task } from '../../interfaces/task';
+import { TasksService } from '@tasksServices/tasks.service';
+import { Task } from '@tasksInterfaces/task';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.scss']
+  styleUrls: ['./task.component.scss'],
 })
 export class TaskComponent {
+  @Input() task: Task = {};
 
-  @Input() task: Task = { };
-
-  constructor(private tasksService: TasksService,
+  constructor(
+    private tasksService: TasksService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService
-  ) { }
+  ) {}
 
   deleteTask(): void {
     this.confirmationService.confirm({
@@ -23,9 +23,13 @@ export class TaskComponent {
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
-        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Deleted successfully' });
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Confirmed',
+          detail: 'Deleted successfully',
+        });
         this.tasksService.deleteTask(this.task.id || '');
-      }
+      },
     });
   }
 

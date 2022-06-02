@@ -6,28 +6,25 @@ import { ToastModule } from 'primeng/toast';
 import { InputTextModule } from 'primeng/inputtext';
 import { DragDropModule } from 'primeng/dragdrop';
 import { FieldsetModule } from 'primeng/fieldset';
-import {InputTextareaModule} from 'primeng/inputtextarea';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 const modulesToExport = [
-    FormsModule,
-    ReactiveFormsModule,
-    CardModule,
-    ButtonModule,
-    ConfirmDialogModule,
-    ToastModule,
-    InputTextModule,
-    DragDropModule,
-    FieldsetModule,
-    InputTextareaModule
+  FormsModule,
+  ReactiveFormsModule,
+  CardModule,
+  ButtonModule,
+  ConfirmDialogModule,
+  ToastModule,
+  InputTextModule,
+  DragDropModule,
+  FieldsetModule,
+  InputTextareaModule,
 ];
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ...modulesToExport
-    ],
-    exports: [...modulesToExport]
+  imports: [CommonModule, ...modulesToExport],
+  exports: [...modulesToExport],
 })
-export class SharedModule { }
+export class SharedModule {}

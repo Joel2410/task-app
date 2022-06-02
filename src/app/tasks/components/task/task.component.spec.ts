@@ -9,10 +9,9 @@ describe('TaskComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TaskComponent ],
-      providers: [ ConfirmationService, MessageService ]
-    })
-    .compileComponents();
+      declarations: [TaskComponent],
+      providers: [ConfirmationService, MessageService],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -1,21 +1,32 @@
 <div class="shadow-box fixed bg-white top-0 z-5 w-full">
-    <div class="grid justify-content-between mx-2 md:mx-6 lg:mx-8">
-        <h1 class="">Tasks</h1>
-        <button pButton type="button" label="New task" class="p-button-success my-3" icon="pi pi-plus-circle"
-            [routerLink]="['/tasks/create']"></button>
-    </div>
+  <div class="grid justify-content-between mx-2 md:mx-6 lg:mx-8">
+    <h1 class="">Tasks</h1>
+    <button
+      pButton
+      type="button"
+      label="New task"
+      class="p-button-success my-3"
+      icon="pi pi-plus-circle"
+      [routerLink]="['/tasks/create']"
+    ></button>
+  </div>
 </div>
 
 <div class="container m-2 md:m-4 lg:m-6">
-    <div class="flex justify-content-left">
-        <div *ngFor="let droppable of droppables" class="col-12 md:col-6 lg:col-4">
-            <div class="flex justify-content-center">
-                <app-tasks-list [title]="droppable" [tasks]="getTasks(droppable)"> </app-tasks-list>
-            </div>
-        </div>
+  <div class="flex justify-content-left">
+    <div *ngFor="let droppable of droppables" class="col-12 md:col-6 lg:col-4">
+      <div class="flex justify-content-center">
+        <app-tasks-list [title]="droppable" [tasks]="getTasks(droppable)">
+        </app-tasks-list>
+      </div>
     </div>
+  </div>
 
-    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
-    </p-confirmDialog>
-    <p-toast></p-toast>
+  <p-confirmDialog
+    [style]="{ width: '50vw' }"
+    [baseZIndex]="10000"
+    rejectButtonStyleClass="p-button-text"
+  >
+  </p-confirmDialog>
+  <p-toast></p-toast>
 </div>

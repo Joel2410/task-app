@@ -17,11 +17,14 @@ describe('TasksService', () => {
 
   it('should be create, update and delete a task', () => {
     // Create task
-    service.createTask({ title: 'Tarea 1', description: 'Pruebas unitarias con Jasmine' });
+    service.createTask({
+      title: 'Tarea 1',
+      description: 'Pruebas unitarias con Jasmine',
+    });
     expect(service.getTasks().length).toEqual(1);
 
     const task: Task = service.getTasks()[0];
-    
+
     // Update task
     service.updateTask(task.id || '', 'Tarea 2', task.description || '');
     expect(task.title || '').toEqual('Tarea 2');
